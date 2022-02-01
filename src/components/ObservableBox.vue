@@ -1,20 +1,20 @@
 <template>
-    <div ref="clickMe" class="click-me">
-        Click Me
-        <br>
-        {{numberOfClicks}}
+    <div class="main">
+        <span>Timeout Period: 4 sec</span>
+        <div ref="clickMe" class="click-me">
+            Click Me
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { asyncScheduler, auditTime, buffer, bufferCount, bufferTime, bufferToggle, bufferWhen, connect, debounce, debounceTime, delay, EMPTY, filter, fromEvent, interval, map, pluck, scan, takeUntil, throttle, throttleTime, timeInterval, timer } from 'rxjs'
+import { asyncScheduler, buffer, connect, fromEvent, map, throttleTime } from 'rxjs'
 import { useToast } from 'vue-toastification';
 
-const clickMe = ref<HTMLDivElement | null>(null)
-const clickType = ref('')
-const numberOfClicks = ref(0)
 const toast = useToast()
+
+const clickMe = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
     const myObservable = fromEvent(clickMe.value, 'click')
@@ -22,7 +22,7 @@ onMounted(() => {
     let myPipe = myObservable.pipe(
         connect(val => val.pipe(
             buffer(val.pipe(
-                throttleTime(2000, asyncScheduler, { leading: false, trailing: true })
+                throttleTime(4 * 1000, asyncScheduler, { leading: false, trailing: true })
             ))
         )),
         map((val) => {
@@ -43,8 +43,15 @@ onMounted(() => {
 </script>
 
 <style lang="postcss">
+.main {
+    span {
+        @apply flex justify-center mb-4;
+    }
+
     .click-me {
         @apply h-[300px] w-[600px] flex justify-center items-center;
         @apply border-2 border-gray-600 bg-yellow-100 cursor-pointer rounded;
     }
+    
+}
 </style>

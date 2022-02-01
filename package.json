@@ -2,7 +2,7 @@
   "name": "rxjs",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
@@ -24,6 +24,7 @@
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^8.2.0",
     "postcss": "^8.4.6",
+    "postcss-nested": "^5.0.6",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.18",
     "typescript": "~4.5.4",
