@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "rxjs": "^7.5.2",
-    "vue": "^3.2.27"
+    "vue": "^3.2.27",
+    "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
