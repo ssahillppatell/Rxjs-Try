@@ -17,7 +17,7 @@ const toast = useToast()
 const clickMe = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
-    const myObservable = fromEvent(clickMe.value, 'click')
+    const myObservable = fromEvent(clickMe.value!, 'click')
 
     let myPipe = myObservable.pipe(
         connect(val => val.pipe(
